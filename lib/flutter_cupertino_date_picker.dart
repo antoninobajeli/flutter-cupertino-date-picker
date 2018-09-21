@@ -46,7 +46,7 @@ class DatePicker {
     int initialDate: 1,
     DateChangedCallback onChanged,
     DateChangedCallback onConfirm,
-    locale : 'zh',
+    locale : 'it',
     dateFormat: "yyyy-mm-dd",
   }) {
     Navigator.push(
@@ -129,7 +129,7 @@ class _DatePickerRoute<T> extends PopupRoute<T> {
         initialMonth: initialMonth,
         initialDate: initialDate,
         onChanged: onChanged,
-        locale: locale,
+        locale: 'it',
         dateFormat: dateFormat,
         route: this,
       ),
@@ -487,6 +487,10 @@ class _DatePickerState extends State<_DatePickerComponent> {
     String lang = widget.locale.split('_').first;
 
     switch(lang) {
+      case 'it' :
+        return 'Fatto';
+        break;
+        
       case 'en' :
         return 'Done';
         break;
@@ -510,6 +514,10 @@ class _DatePickerState extends State<_DatePickerComponent> {
     String lang = widget.locale.split('_').first;
 
     switch(lang) {
+      case 'it' :
+        return 'Annulla';
+        break;
+        
       case 'en' :
         return 'Cancel';
         break;
@@ -533,6 +541,7 @@ class _DatePickerState extends State<_DatePickerComponent> {
     String lang = widget.locale.split('_').first;
 
     switch(lang) {
+        
       case 'zh' :
         return '年';
         break;
@@ -552,6 +561,7 @@ class _DatePickerState extends State<_DatePickerComponent> {
     String lang = widget.locale.split('_').first;
 
     switch(lang) {
+        
       case 'zh' :
         return '月';
         break;
@@ -570,6 +580,19 @@ class _DatePickerState extends State<_DatePickerComponent> {
     String lang = widget.locale.split('_').first;
 
     switch(lang) {
+      case 'it' :
+        const months = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"];
+        if(format.length <= 2) {
+          print(format + ', ' + month.toString());
+          return (month + 1).toString();
+        } else if (format.length <= 3){
+          return months[month].substring(0,3);
+        } else {
+          return months[month];
+        }
+        break;
+
+        
       case 'en' :
         const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         if(format.length <= 2) {
